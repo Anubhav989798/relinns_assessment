@@ -2,13 +2,13 @@ import openai
 import requests
 from bs4 import BeautifulSoup
 
-openai.api_key = "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" 
+openai.api_key = "" #please provide api key before using it
 
 def scrape_website(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
 
-    content_element = soup.find(class_='container') 
+    content_element = soup.find('div',class_='container') 
 
     if content_element:
         extracted_info = content_element.get_text()
@@ -26,11 +26,11 @@ def generate_response(prompt):
     return response.choices[0].text.strip()
 
 def main():
-    website_url = "https://www.relinns.com"  
+    website_url = ""  #please provide website you want to scrape
     extracted_info = scrape_website(website_url)
     processed_info = extracted_info.split(". ")  
 
-    print("welcome please submit your query")
+    print("welcome please enter your query")
     while True:
         user_input = input("You: ")
         if user_input.lower() == "exit":
